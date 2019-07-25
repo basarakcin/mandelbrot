@@ -9,7 +9,7 @@ Dieser Aufruf in der Konsole erfolgt so:
 ```C
 $ ./mandelbrot
 ```
-Um einen spezifischen Ausschnitt der Mandelbrotmenge genauer zu visualisieren, kön- nen bei Programmaufruf Übergabeparameter verwendet werden. Dabei ist es wichtig, das folgende Aufrufsmuster einzuhalten:
+Um einen spezifischen Ausschnitt der Mandelbrotmenge genauer zu visualisieren, können bei Programmaufruf Übergabeparameter verwendet werden. Dabei ist es wichtig, das folgende Aufrufsmuster einzuhalten:
 ```C
 $ ./mandelbrot dateiname r_start r_end i_start _end resolution i_max
 ```
@@ -18,7 +18,7 @@ Alle Parameter, bis auf i_max, sind als Fließkommazahlen anzugeben. Außerdem g
 * Die Eingabe für r_end muss im Interval [-2;1] liegen. Endwert auf Realachse.
 * Die Eingabe für i_start muss im Interval [-1;1] liegen. Startwert auf Imaginärachse.
 * Die Eingabe für i_end muss im Interval [-1;1] liegen. Endwert auf Imaginärachse.
-* DieResolutiondarfnichtnegativoder0seinundsolltenichtgrößer1sein.Abstand zweier Samplepunkte
+* Die Resolution, der Abstand zweier Samplepunkte, darf nicht negativ oder 0 sein und sollte nicht größer 1 sein.
 * Die Anzahl der maximalen Iterationen darf nicht kleiner 0 sein.
 
 Zusätzlich dazu lassen sich durch Ausführen von
