@@ -6,14 +6,13 @@
 #include <unistd.h>
 #include "bmp.h"
 
-
 // Methodendeklaration der Assembly Implementierung des Algorithmus (mandelbrot.S)
 extern void mandelbrot(float r_start, float r_end, float i_start, float i_end, float resolution, unsigned char *img, int16_t max_iterations);
 
 // Methodendeklaration der Referenzimplementierung des zu entwickelnden Algorithmus
 void mandelbrot_c(float r_start, float r_end, float i_start, float i_end, float resolution, unsigned char *img, int16_t max_iterations);
 
-// Methodendeklaration der Methode zur Validierung der Eingaben, Ausführen des Algorithmus und 
+// Methodendeklaration der Methode zur Validierung der Eingaben, Ausführen des Algorithmus und
 // Verifikation der Korrektheit des Ergebnisses
 int calculate_mandelbrot(char *file_name, float r_start, float r_end, float i_start, float i_end, float resolution, int16_t max_iterations);
 
@@ -47,18 +46,20 @@ int main(int argc, char *argv[])
         case 1:
                 break;
 
-        // Falls die automatischen Tests ausgeführt werden sollen 
+        // Falls die automatischen Tests ausgeführt werden sollen
         case 2:
                 if (!strcmp(argv[1], "test"))
                 {
                         printf("Tests starten...\r\n");
                         exit(test());
                 }
-				else if (!strcmp(argv[1], "-h" || "--help" || "--hilfe"))
-				{
-						printf("Format:\n[dateiname] r_start r_end i_start i_end resolution i_max'\n");
-						exit(EXIT_SUCCESS);
-				}
+                else if (!strcmp(argv[1], "-h") ||
+                         !strcmp(argv[1], "--help") ||
+                         !strcmp(argv[1], "--hilfe"))
+                {
+                        printf("Format:\n[dateiname] r_start r_end i_start i_end resolution i_max'\n");
+                        exit(EXIT_SUCCESS);
+                }
                 break;
 
         // Wenn Parameter und der Standarddateiname überschrieben werden sollen
@@ -83,7 +84,7 @@ int main(int argc, char *argv[])
                 max_iterations = (float)atof(argv[6]);
                 break;
 
-        // Falls der Nutzer ein nicht vorgesehenes Format nutzt, wird vorgesehenes 
+        // Falls der Nutzer ein nicht vorgesehenes Format nutzt, wird vorgesehenes
         // Format zur Hilfe ausgegeben und das Programm wird mit einem Fehler beendet.
         default:
                 fprintf(stderr, "Bitte halten sie sich an das Format '[dateiname] r_start r_end i_start i_end resolution i_max'\r\n");
@@ -97,7 +98,7 @@ int main(int argc, char *argv[])
         exit(calculate_mandelbrot(file_name, r_start, r_end, i_start, i_end, resolution, max_iterations));
 }
 
-// Eigentliche Methode zur Berechnung der Iterationszahlen der einzelnen komplexen 
+// Eigentliche Methode zur Berechnung der Iterationszahlen der einzelnen komplexen
 // Zahlen korrespondierend zu Pixeln. Gibt entweder Fehlercode bei illegalen Werten
 // oder 0 bei Erfolg zurück
 int calculate_mandelbrot(char *file_name, float r_start, float r_end, float i_start, float i_end, float resolution, int16_t max_iterations)
@@ -153,7 +154,7 @@ int calculate_mandelbrot(char *file_name, float r_start, float r_end, float i_st
                 return EXIT_FAILURE;
         }
 
-        // Berechnung der Höhe und Breite des Bildes und Verkleinerung auf 
+        // Berechnung der Höhe und Breite des Bildes und Verkleinerung auf
         // Vielfaches von 4. Für Optimierung in Assembly Implementierung
         u_int32_t width = (r_end - r_start) / resolution;
         width = width - (width % 4);
@@ -191,7 +192,7 @@ int calculate_mandelbrot(char *file_name, float r_start, float r_end, float i_st
         // auffüllt
         int32_t paddingSize = (4 - (sizeof(RGBTRIPLET) * width) % 4) % 4;
 
-        // Berechnung der totalen Bildgröße aus der totalen Größe des Headers, der 
+        // Berechnung der totalen Bildgröße aus der totalen Größe des Headers, der
         // Bildgröße und des benötigten Puffers
         int32_t fileSize = sizeof(bmFH) + sizeof(bmIH) + imageSize + (3 * width * paddingSize);
 
@@ -281,7 +282,7 @@ int calculate_mandelbrot(char *file_name, float r_start, float r_end, float i_st
                              comparisonBuffer, max_iterations);
                 c_time = curtime() - c_time;
 
-                // Iteration über tatsächliches und erwartetes Bild. Für jeden 
+                // Iteration über tatsächliches und erwartetes Bild. Für jeden
                 // Unterschied an beiden Bildern wird ein Zähler inkrementiert
                 u_int32_t counter = 0;
                 for (int i = 0; i < imageSize; i += 3)
@@ -452,12 +453,12 @@ int test()
         printf("   ./mandelbrot -2 -1 -1 0 0.05 127\r\n");
         printf("   ./mandelbrot -2 1 -1 1 0.005 5000\r\n");
         printf("Der Vergleich zur Referenzimplementierung erfolgt automatisch.\r\n");
-        
+
         fflush(stdout);
         return EXIT_SUCCESS;
 }
 
-// test_input: Führt einen spezifischen Test aus. Es muss ein Testindex, 
+// test_input: Führt einen spezifischen Test aus. Es muss ein Testindex,
 // ein Programmaufrufinput, eine erwartete Nachricht und die für die
 // Berechnung wichtigen Parameter angegeben werden.
 // Gibt einen Wahrheitswert darüber aussagend zurück, ob der Test efolgreich war
