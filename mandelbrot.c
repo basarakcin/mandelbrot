@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
         float r_end = 1;
         float i_start = -1;
         float i_end = 1;
-        float resolution = 0.005;
+        float resolution = 0.0001;
         int16_t max_iterations = 255;
 
         // Falls Startparameter vorhanden, werden Standardwerte überschrieben
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
                          !strcmp(argv[1], "--help") ||
                          !strcmp(argv[1], "--hilfe"))
                 {
-                        printf("Format:\n[dateiname] r_start r_end i_start i_end resolution i_max'\n");
+                        printf("Format:\n[dateiname], r_start, r_end, i_start, i_end, resolution, i_max\n");
                         exit(EXIT_SUCCESS);
                 }
                 break;
