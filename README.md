@@ -30,4 +30,4 @@ Das kompilierte Programm lässt sich durch
 ```C
 $ make clean
 ```
-wieder entfernen
+wieder entfernen.
