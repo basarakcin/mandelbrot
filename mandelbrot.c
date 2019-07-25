@@ -54,6 +54,11 @@ int main(int argc, char *argv[])
                         printf("Tests starten...\r\n");
                         exit(test());
                 }
+				else if (!strcmp(argv[1], "-h" || "--help" || "--hilfe"))
+				{
+						printf("Format:\n[dateiname] r_start r_end i_start i_end resolution i_max'\n");
+						exit(EXIT_SUCCESS);
+				}
                 break;
 
         // Wenn Parameter und der Standarddateiname überschrieben werden sollen
