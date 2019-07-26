@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
         float r_end = 1;
         float i_start = -1;
         float i_end = 1;
-        float resolution = 0.0001;
+        float resolution = 0.001;
         int16_t max_iterations = 255;
 
         // Falls Startparameter vorhanden, werden Standardwerte überschrieben
